@@ -4,19 +4,53 @@ using System.Text;
 
 namespace src_HeroopQuest.GameClasses
 {
-    enum HeroType {Barbaar, Dwerg, Elf, Tovenaar}
+    enum HeldType {Barbaar, Dwerg, Elf, Tovenaar}
     class Held
     {
-        public string Name { get;  set; }
-        public string Description { get; private set; }
-        public int MaxIntelligence { get; private set; }
-        public int CurrentIntelligence { get; set; }
-        public int MaxBody { get; private set; }
-        public int CurrentBody { get; set; }
-        public HeroType HeroType { get; private set; }
+        public Held(HeldType type, string naam)
+        {
+            Naam = naam;
+            HeldType = type;
+            switch (type)
+            {
+                case HeldType.Barbaar:
+                    AanvalDobbelsteen = 3;
+                    MaxIntelligentie = 2;
+                    MaxLichaam = 8;
+                    break;
+                case HeldType.Dwerg:
+                    MaxIntelligentie = 3;
+                    MaxLichaam = 7;
+                    break;
+                case HeldType.Elf:
+                    MaxIntelligentie = 4;
+                    MaxLichaam = 6;
+                    break;
+                case HeldType.Tovenaar:
+                    AanvalDobbelsteen = 1;
+                    MaxIntelligentie = 6;
+                    MaxLichaam = 4;
+                    break;
+                default:
+                    break;
+            }
+            HuidigIntelligentie = MaxIntelligentie;
+            HuidigLichaam = MaxLichaam;
+            
+        }
 
-        public int AttackValue { get; private set; } = 2;
-        public int DefenseVallue { get; private set; } = 2;
-        public int RunValue { get; private set; } = 2;
+        public string Naam { get;  set; }
+        public string Beschrijving { get; private set; }
+        public int MaxIntelligentie { get; private set; }
+        public int HuidigIntelligentie { get; set; }
+        public int MaxLichaam { get; private set; }
+        public int HuidigLichaam { get; set; }
+        public HeldType HeldType { get; private set; }
+
+        public int AanvalDobbelsteen { get; private set; } = 2;
+        public int VerdedigingDobbelsteen { get; private set; } = 2;
+        public int LoopDobbelsteen { get; private set; } = 2;
+
+
     }
 }
